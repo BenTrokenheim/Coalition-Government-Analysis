@@ -119,13 +119,13 @@ Following this, I explored various decision tree configurations. The first was o
 
 Here is the resulting tree with just a cost-complexity tuning parameter:
 
-![Untitled](images/Image7.png)
+![Untitled](images/Images7.png)
 
 The resulting tree had an R-squared of 0.748 and an MSE of 0.016. I will interpret this tree after explaining all the trees that I ran.
 
 I next experimented with hyperparameters like max_depth, min_samples_split, min_samples_leaf, and max_leaf_nodes to see which combination would yield the best in-sample results. I used a grid search method to search the matrix of all possible combinations of those four hyperparameters, and the results that had the lowest MSE were max_leaf_nodes = 8, min_samples_leaf = 5, max_depth = none, and min_samples_split = 2. This returned a slightly larger tree than the cost complexity pruning one and had an R-squared of 0.807 and an MSE of 0.012. The tree is seen here:
 
-![Untitled](images/Image8.png)
+![Untitled](images/Images8.png)
 
 I considered running an ensemble tree as well, such as a random forest or boosting model, but in this specific data problem, I did not want to sacrifice the interpretability of my trees. The primary goal of this assignment was to extract meaningful insights into coalition politics, and if it were a more professional project, provide insights into party leaders on what has historically determined the makeup of a cabinet. The inherent complex nature of ensemble approaches obscure any meaningful takeaways from the results, and I thus forwent that option.
 
@@ -133,7 +133,7 @@ I considered running an ensemble tree as well, such as a random forest or boosti
 
 The variables that were split on in the decision trees unveiled some intriguing insights. Going back to this image:
 
-![Untitled](images/Image2.png)
+![Untitled](images/Images2.png)
 
 The primary determinant for this split, according to the tree, is the prime minister variable. Essentially, winning the prime minister position guarantees your party at least one position in the cabinet. I confirmed this by looking at the Excel spreadsheet of the data, and every row with a ‘1’ for prime minister had at least 1 cabinet seat. If your party does not win the prime minister role, the next best explanatory variable to predict cabinet_proportion is sq_cabinet, which signifies the party’s presence in the previous coalition. If a party was part of the prior coalition, its cabinet_proportion tends to be higher. If a party neither wins prime minister nor had any cabinet seats in the prior coalition, the decision trees overall predict cabinet_proportion to be 0.035, or essentially zero. This logical sequence makes sense because winning the prime minister signifies a party’s significant role and influence in the government, as well as its overall popularity among the electorate. Conversely, if a party lacks both the current leadership (prime minister) and historical experience (prior coalition representation), it is less likely to secure cabinet seats in the current coalition.
 
@@ -153,7 +153,7 @@ I wanted to see how linear models would perform as well and if the results were 
 
 I then ran lasso regularization and was curious if it would identify the similar important features that the decision tree split on. These are the results from my clearest lasso regularization:
 
-![Untitled](images/Image9.png)
+![Untitled](images/Images9.png)
 
 Overall, the results are pretty consistent. At a low alpha value, prime minister is the most important, and as we penalize the coefficients, latent_pivotality and latent_seats remain. The minor variables are also consistent as we see sq_cabinet, sq_pm, and mingov are more influential when we prioritize bias over variance. The best alpha value, 0.00189, was found using 5-fold cross-validation (again, results were pretty consistent when I increased folds so for the sake of simplicity I opted for 5 bins) and resulted in an average out-of-fold MSE of 0.0157. The equation at the best alpha value is this:
 
@@ -177,7 +177,7 @@ So, while the linear models provided similar results to the decision trees, and 
 
 I was able to deduce that the most important IVs were prime minister, pivotality, sq variables, and a few others. However, I was curious as to which pivotality metrics were best, so I ran a lasso regularization exclusively with the pivotality variables and cabinet_proportion and found that Banzhaf and splus were most influential. Lasso seen here:
 
-![Untitled](images/Image10.png)
+![Untitled](images/Images10.png)
 
 I pondered running new regressions with just these two variables in latent_pivotality to see if it would do better out-of-sample by avoiding overfitting. However, I was hesitant and considered the possibility that other pivotality metrics might still hold significance. Rather, lasso regularization could have yielded these results because it was forced to choose a couple of important variables because of the nature of how the coefficients are calculated. Nonetheless, it appears as though the Banzhaf and splus pivotality metrics are the most influential.
 
