@@ -177,7 +177,7 @@ So, while the linear models provided similar results to the decision trees, and 
 
 I was able to deduce that the most important IVs were prime minister, pivotality, sq variables, and a few others. However, I was curious as to which pivotality metrics were best, so I ran a lasso regularization exclusively with the pivotality variables and cabinet_proportion and found that Banzhaf and splus were most influential. Lasso seen here:
 
-![Untitled](Images10.png)
+![Untitled](images/Images10.png)
 
 I pondered running new regressions with just these two variables in latent_pivotality to see if it would do better out-of-sample by avoiding overfitting. However, I was hesitant and considered the possibility that other pivotality metrics might still hold significance. Rather, lasso regularization could have yielded these results because it was forced to choose a couple of important variables because of the nature of how the coefficients are calculated. Nonetheless, it appears as though the Banzhaf and splus pivotality metrics are the most influential.
 
