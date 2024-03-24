@@ -1,6 +1,6 @@
 # Modeling European Coalition Governments
 
-In this project, I analyzed election data from European countries spanning 1986-2011 to build predictive models for the proportion of cabinet seats parties would receive post-election negotiations.The data was from these two sources: 
+In this project, I analyzed election data from European countries spanning 1986-2011 to build predictive models for the proportion of cabinet seats parties would receive post-election negotiations. The data was from these two sources: 
 
 Government formation as logrolling in high-dimensional issue spaces (Scott de Marchi with Michael Laver). 2020. Journal of Politics.
 
