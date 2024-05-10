@@ -10,17 +10,17 @@ Government Formation in the Shadow of an Uncertain Future Election (Scott de Mar
 
 
 ## Table of Contents
-#### Data Wrangling and Manipulation
-#### Imputation/Missingness
-#### Feature Selection
-#### Theory
-#### Assumptions Violated
-#### PCA
-#### Decision Trees
-#### Interpreting the trees
-#### Linear Models and Lasso Regularization
-#### Pivotality Metric Analysis
-#### Out-of-Sample Results and Conclusion
+- Data Wrangling and Manipulation
+- Imputation/Missingness
+- Feature Selection
+- Theory
+- Assumptions Violated
+- PCA
+- Decision Trees
+- Interpreting the trees
+- Linear Models and Lasso Regularization
+- Pivotality Metric Analysis
+- Out-of-Sample Results and Conclusion
 
 ## Data Wrangling and Manipulation
 
